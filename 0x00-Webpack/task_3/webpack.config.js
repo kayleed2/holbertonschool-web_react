@@ -8,7 +8,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
   mode: 'development',
   devServer: {
-    static: path.join(__dirname, 'public'),
+    static: path.join(__dirname, './public'),
     compress: true,
     port: 8564,
   },
