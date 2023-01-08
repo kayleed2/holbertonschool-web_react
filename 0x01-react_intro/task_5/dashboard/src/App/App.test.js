@@ -1,14 +1,12 @@
 import React from 'react';
-import * as ReactDOMClient from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
 import { shallow } from 'enzyme';
 import { assert } from 'chai';
 
 describe('App', () => {
   it('renders without crashing', () => {
-    const div = document.createElement('div');
-    const root = ReactDOMClient.createRoot(div);
-    root.render(<App />);
+    shallow(<App />);
   });
 
   it('renders the right header', () => {
