@@ -1,0 +1,19 @@
+.Notifications {
+    border: 1px red dashed;
+    padding: 2%;
+    width: 30%;
+    margin-left: 66%;
+}
+
+li[data-priority="default"] {
+	color: blue;
+}
+
+li[data-priority="urgent"] {
+	color: red;
+}
+
+.menuItem {
+    text-align: right;
+}
+
