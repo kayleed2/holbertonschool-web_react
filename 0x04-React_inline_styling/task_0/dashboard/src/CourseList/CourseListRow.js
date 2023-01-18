@@ -13,16 +13,12 @@ CourseListRow.propTypes = {
     textSecondCell: null,
 };
 
-const styles = StyleSheet.create({
-    content: {
-      border: '1px solid #e1354b',
-    },
-});
+const color = "#deb5b545"
 
 
 export default function CourseListRow({ isHeader, textFirstCell, textSecondCell} ) {
     return (
-    <tr className={css(styles.content)} style={{ backgroundColor: isHeader ? '#deb5b545' : '#f5f5f5ab' }}>
+    <tr style={{ backgroundColor: isHeader ? color : '#f5f5f5ab' }}>
         {isHeader && textSecondCell === null && (
             <th colSpan={2}>{textFirstCell}</th>
         )}
