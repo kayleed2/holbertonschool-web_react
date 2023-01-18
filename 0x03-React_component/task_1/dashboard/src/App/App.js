@@ -1,13 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 import Header from '../Header/Header';
 import Notifications from '../Notifications/Notifications';
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
-import CourseList from '../CourseList/CourseList'
-import propTypes from 'prop-types';
+import CourseList from '../CourseList/CourseList';
 import { getLatestNotification } from '../utils/utils';
-
 
 class App extends React.Component {
   componentDidMount() {
@@ -55,8 +54,8 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  isLoggedIn: propTypes.bool,
-  logOut: propTypes.func,
+  isLoggedIn: PropTypes.bool,
+  logOut: PropTypes.func,
 };
 
 App.defaultProps = {
