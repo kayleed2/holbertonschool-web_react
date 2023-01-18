@@ -2,6 +2,8 @@ import React from 'react';
 import Login from './Login';
 import { shallow } from 'enzyme';
 import { assert } from 'chai';
+import "../../config/setupTests"
+
 
 describe('Login', () => {
     it('Login renders without crashing', () => {

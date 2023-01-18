@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './App.css';
 import Header from '../Header/Header';
 import Notifications from '../Notifications/Notifications';
 import Login from '../Login/Login';

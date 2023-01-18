@@ -2,6 +2,7 @@ import React from 'react';
 import NotificationItem from './Notifications';
 import Notifications from './Notifications';
 import { shallow } from 'enzyme';
+import "../../config/setupTests"
 
 describe('NotificationItem', () => {
   it('renders without crashing', () => {

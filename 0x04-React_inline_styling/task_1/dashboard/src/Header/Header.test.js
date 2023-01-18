@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import { shallow } from 'enzyme';
 import { assert } from 'chai';
+import "../../config/setupTests"
 
 describe('Header', () => {
     it('Header renders without crashing', () => {
