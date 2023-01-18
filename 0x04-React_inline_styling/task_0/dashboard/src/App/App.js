@@ -26,11 +26,15 @@ const listNotifications = [
 
 class App extends React.Component {
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeydown);
+    if (typeof window !== "undefined") {
+      window.addEventListener('keydown', this.handleKeydown);
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeydown);
+    if (typeof window !== "undefined") {
+      window.removeEventListener('keydown', this.handleKeydown);
+    }
   }
 
   handleKeydown = (event) => {

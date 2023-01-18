@@ -28,6 +28,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
+    "@testing-library/react": "^13.4.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "prop-types": "^15.8.1",
