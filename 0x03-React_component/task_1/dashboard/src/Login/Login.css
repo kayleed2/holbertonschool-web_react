@@ -1,0 +1,19 @@
+.App-link {
+    color: #61dafb;
+}
+  
+/* @keyframes App-logo-spin {
+from {
+    transform: rotate(0deg);
+}
+to {
+    transform: rotate(360deg);
+}
+} */
+  
+.App-body {
+    min-height: 50vh;
+    text-align: left;
+    padding: 2%;
+    border-bottom: solid .5vh  rgb(229 52 74);;
+}
