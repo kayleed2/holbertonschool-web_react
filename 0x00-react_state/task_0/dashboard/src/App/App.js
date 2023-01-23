@@ -39,6 +39,9 @@ class App extends Component {
     this.state = {
       displayDrawer: false,
     };
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentWillUnmount = this.componentWillUnmount.bind(this);
+    this.handleKeydown = this.handleKeydown.bind(this);
   }
 
   handleHideDrawer() {

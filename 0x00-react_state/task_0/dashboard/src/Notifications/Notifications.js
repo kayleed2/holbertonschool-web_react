@@ -96,12 +96,10 @@ class Notifications extends Component {
   }
 
   render() {
-    const { handleDisplayDrawer, handleHideDrawer, listNotifications } = this.props;
-
     return (
       <div className={css(styles.fullNotifications)}>
         <div className={css(styles.menuItem)}>
-          <p onClick = { handleDisplayDrawer }>Your notifications</p>
+          <p onClick = { this.props.handleDisplayDrawer }>Your notifications</p>
         </div>
         {this.props.displayDrawer ? (
       <div
