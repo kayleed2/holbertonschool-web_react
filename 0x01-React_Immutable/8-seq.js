@@ -19,5 +19,5 @@ export default function printBestStudents(object) {
     JSObject[key].lastName = capFirstLetter(JSObject[key].lastName);
     return JSObject[key];
   });
-console.log(JSObject);
+  console.log(JSObject);
 }
