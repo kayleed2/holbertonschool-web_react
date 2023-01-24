@@ -1,42 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import closeIcon from '../assets/close-icon.png';
-import { getLatestNotification } from '../utils/utils';
+import { StyleSheet, css } from 'aphrodite';
 import NotificationItem from './NotificationItem';
 import NotificationItemShape from './NotificationItemShape';
-import { StyleSheet, css } from 'aphrodite';
-
-const opacityKeyframes = {
-  '0%': { opacity: 0 },
-  '100%': { opacity: 1 },
-};
-
-const bounceKeyframes = {
-  '0%': {
-    transform: 'translateY(0px)',
-  },
-  '50%': {
-    transform: 'translateY(-5px)',
-  },
-  '100%': {
-    transform: 'translateY(5px)',
-  },
-};
+import closeIcon from '../assets/close-icon.png';
 
 const styles = StyleSheet.create({
   fullNotifications: {},
   menuItem: {
     textAlign: 'right',
     ':hover': {
-      cursor: 'pointer',
-      animationName: [opacity, animate],
-      animationDuration: '1s, 0.5s',
+      transform: 'translateY(-5px)',
+      animationDuration: '1s',
+      animationTimingFunction: 'linear',
       animationIterationCount: 3,
+      cursor: 'pointer',
+      opacity: 0.5,
     },
   },
   notificationsDiv: {
-    width: '30%',
-    float: 'right',
+    width: '100%',
     border: '2px dashed #e11d3f',
     display: 'flex',
     flexDirection: 'row',
@@ -77,7 +60,10 @@ class Notifications extends Component {
   constructor(props) {
     super(props);
     this.markAsRead = this.markAsRead.bind(this);
-    this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
+  }
+
+  markAsRead(id) {
+    console.log(`Notification ${id} has been marked as read`);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -91,65 +77,61 @@ class Notifications extends Component {
     return false;
   }
 
-  markAsRead(id) {
-    console.log(`Notification ${id} has been marked as read`);
-  }
-
   render() {
     return (
       <div className={css(styles.fullNotifications)}>
         <div className={css(styles.menuItem)}>
-          <p onClick = { this.props.handleDisplayDrawer }>Your notifications</p>
+          <p onClick={this.props.handleDisplayDrawer}>Your notifications</p>
         </div>
         {this.props.displayDrawer ? (
-      <div
-      className={css(
-        styles.notificationsDiv,
-        styles.notificationsSmallDiv
-      )}
-    >
-      <div
-        className={css(styles.notifications, styles.notificationsSmall)}
-      >
-        {this.props.listNotifications.length === 0 ? (
-          <p>No new notification for now</p>
-        ) : (
-          <React.Fragment>
-            <p>Here is the list of notifications</p>
-            <ul className={css(styles.smallUl)}>
-              {this.props.listNotifications.map((v) => {
-                return (
-                  <NotificationItem
-                    markAsRead={this.markAsRead}
-                    key={v.id}
-                    type={v.type}
-                    value={v.value}
-                    html={v.html}
-                    id={v.id}
-                  />
-                );
-              })}
-            </ul>
-          </React.Fragment>
-        )}
+          <div
+            className={css(
+              styles.notificationsDiv,
+              styles.notificationsSmallDiv
+            )}
+          >
+            <div
+              className={css(styles.notifications, styles.notificationsSmall)}
+            >
+              {this.props.listNotifications.length === 0 ? (
+                <p>No new notification for now</p>
+              ) : (
+                <React.Fragment>
+                  <p>Here is the list of notifications</p>
+                  <ul className={css(styles.smallUl)}>
+                    {this.props.listNotifications.map((item) => {
+                      return (
+                        <NotificationItem
+                          markAsRead={this.markAsRead}
+                          key={item.id}
+                          type={item.type}
+                          value={item.value}
+                          html={item.html}
+                          id={item.id}
+                        />
+                      );
+                    })}
+                  </ul>
+                </React.Fragment>
+              )}
+            </div>
+            <button
+              className={css(styles.closeButton)}
+              onClick={this.props.handleHideDrawer}
+              aria-label={'Close'}
+            >
+              <img
+                src={closeIcon}
+                alt=""
+                id="close-icon"
+                className={css(styles.closeIcon)}
+              />
+            </button>
+          </div>
+        ) : null}
       </div>
-      <button
-        className={css(styles.closeButton)}
-        onClick={this.props.handleHideDrawer}
-        aria-label={'Close'}
-      >
-        <img
-              src={closeIcon}
-              alt=""
-              id="close-icon"
-              className={css(styles.closeIcon)}
-        />
-      </button>
-    </div>
-   ) : null}
-  </div>
-);
-}
+    );
+  }
 }
 
 Notifications.propTypes = {

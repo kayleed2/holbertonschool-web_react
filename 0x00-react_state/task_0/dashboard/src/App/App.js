@@ -39,17 +39,14 @@ class App extends Component {
     this.state = {
       displayDrawer: false,
     };
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentWillUnmount = this.componentWillUnmount.bind(this);
-    this.handleKeydown = this.handleKeydown.bind(this);
   }
 
   handleHideDrawer() {
-      this.setState({ displayDrawer: false });
+    this.setState({ displayDrawer: false });
   }
 
   handleDisplayDrawer() {
-      this.setState({ displayDrawer: true });
+    this.setState({ displayDrawer: true });
   }
 
   componentDidMount() {
@@ -85,9 +82,12 @@ class App extends Component {
 
     return (
       <div className={css(styles.body)}>
-        <Notifications listNotifications={listNotifications} handleHideDrawer={this.handleHideDrawer}
+        <Notifications
+          handleHideDrawer={this.handleHideDrawer}
           handleDisplayDrawer={this.handleDisplayDrawer}
-          displayDrawer={this.state.displayDrawer} />
+          displayDrawer={this.state.displayDrawer}
+          listNotifications={listNotifications}
+        />
         <Header />
         <main className={css(styles.mainContent)}>
           {isLoggedIn ? (
