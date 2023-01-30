@@ -1,20 +1,43 @@
-import React from 'react';
+import { shallow, mount, unmount } from '../../config/setupTests';
+import { StyleSheetTestUtils } from 'aphrodite';
+import WithLogging from '../HOC/WithLogging';
 import Login from './Login';
-import { shallow } from 'enzyme';
-import { assert } from 'chai';
 
-describe('Login', () => {
-  it('Login renders without crashing', () => {
-    shallow(<Login />);
-  });
 
-  it('Login renders input tags', () => {
-    const wrapper = shallow(<Login />);
-    assert.equal(wrapper.find('input').length, 2);
-  });
+describe('<Login />', () => {
+	beforeEach(() => {
+		StyleSheetTestUtils.suppressStyleInjection();
+	});
 
-  it('Login renders label tags', () => {
-    const wrapper = shallow(<Login />);
-    assert.equal(wrapper.find('label').length, 2);
-  });
+	afterEach(() => {
+		jest.clearAllMocks();
+	});
+	
+	it('Tests that Login renders without crashing', () => {
+		const wrapper = shallow(<Login />);
+		wrapper.update();
+		expect(wrapper.exists()).toBe(true);
+	})
+
+	it('Tests that the component renders 3 <input> and 2 <label> tags', () => {
+		const Example = WithLogging(() => <Login />);
+		const wrapper = mount(<Example />);
+		expect(wrapper.find('input').length).toBe(3);
+		expect(wrapper.find('label').length).toBe(2);
+		wrapper.unmount();
+	})
+
+	it(`Tests that submit button is disabled by default`, () => {
+		const wrapper = mount(<Login />);
+		expect(wrapper.find('#submit').prop('disabled')).toBe(true);
+		wrapper.unmount();
+	})
+
+	it(`Tests that submit button is enabled when email and password are both filled`, () => {
+		const wrapper = mount(<Login />);
+		wrapper.find('#email').simulate('change', { target: { value: 'adam' } });
+		wrapper.find('#password').simulate('change', { target: { value: '123' } });
+		expect(wrapper.find('#submit').prop('disabled')).toBe(false);
+		wrapper.unmount();
+	})
 });
